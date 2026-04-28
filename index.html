@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Dashboard — St. Pete AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">◆</span>
+          <h1 class="brand-name">Task Dashboard</h1>
+          <span class="brand-sub">St. Pete AI</span>
+        </div>
+
+        <nav class="header-counts" aria-label="Task counts by status">
+          <span class="count-badge count-todo">
+            <span class="count-dot dot-todo" aria-hidden="true"></span>
+            <span class="count-label">To Do</span>
+            <span class="count-number" id="num-todo">0</span>
+          </span>
+          <span class="count-divider" aria-hidden="true">/</span>
+          <span class="count-badge count-inprogress">
+            <span class="count-dot dot-inprogress" aria-hidden="true"></span>
+            <span class="count-label">In Progress</span>
+            <span class="count-number" id="num-inprogress">0</span>
+          </span>
+          <span class="count-divider" aria-hidden="true">/</span>
+          <span class="count-badge count-done">
+            <span class="count-dot dot-done" aria-hidden="true"></span>
+            <span class="count-label">Done</span>
+            <span class="count-number" id="num-done">0</span>
+          </span>
+        </nav>
+
+        <button class="btn-add" id="btn-open-modal" type="button" aria-label="Add a new task">
+          <span aria-hidden="true">+</span> Add Task
+        </button>
+      </div>
+    </header>
+
+    <main class="board" id="board">
+
+      <section class="column" id="col-todo" aria-labelledby="heading-todo">
+        <header class="column-header">
+          <span class="column-pip pip-todo" aria-hidden="true"></span>
+          <h2 class="column-title" id="heading-todo">To Do</h2>
+          <span class="column-count" id="col-count-todo" aria-live="polite">0</span>
+        </header>
+        <ul class="task-list" id="list-todo" role="list" aria-label="To Do tasks"></ul>
+        <p class="empty-state" id="empty-todo" aria-hidden="true">No tasks yet</p>
+      </section>
+
+      <section class="column" id="col-inprogress" aria-labelledby="heading-inprogress">
+        <header class="column-header">
+          <span class="column-pip pip-inprogress" aria-hidden="true"></span>
+          <h2 class="column-title" id="heading-inprogress">In Progress</h2>
+          <span class="column-count" id="col-count-inprogress" aria-live="polite">0</span>
+        </header>
+        <ul class="task-list" id="list-inprogress" role="list" aria-label="In Progress tasks"></ul>
+        <p class="empty-state" id="empty-inprogress" aria-hidden="true">Nothing in progress</p>
+      </section>
+
+      <section class="column" id="col-done" aria-labelledby="heading-done">
+        <header class="column-header">
+          <span class="column-pip pip-done" aria-hidden="true"></span>
+          <h2 class="column-title" id="heading-done">Done</h2>
+          <span class="column-count" id="col-count-done" aria-live="polite">0</span>
+        </header>
+        <ul class="task-list" id="list-done" role="list" aria-label="Done tasks"></ul>
+        <p class="empty-state" id="empty-done" aria-hidden="true">Nothing completed yet</p>
+      </section>
+
+    </main>
+
+    <!-- Add Task Modal -->
+    <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+      <article class="modal">
+        <header class="modal-header">
+          <h2 class="modal-title" id="modal-title">New Task</h2>
+          <button class="modal-close" id="btn-close-modal" type="button" aria-label="Close modal">×</button>
+        </header>
+        <form class="modal-form" id="task-form" novalidate>
+          <label class="form-label" for="task-title-input">Task title</label>
+          <input
+            class="form-input"
+            type="text"
+            id="task-title-input"
+            name="task-title"
+            placeholder="What needs to be done?"
+            autocomplete="off"
+            maxlength="120"
+            required
+          />
+          <p class="form-error" id="form-error" role="alert" aria-live="assertive" hidden>
+            Please enter a task title.
+          </p>
+          <footer class="modal-footer">
+            <button class="btn-cancel" id="btn-cancel" type="button">Cancel</button>
+            <button class="btn-submit" type="submit">Add Task</button>
+          </footer>
+        </form>
+      </article>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
